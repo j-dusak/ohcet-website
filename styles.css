@@ -1,0 +1,127 @@
+:root {
+    --hunter-green: #152c18;
+    --cream: #b9b59f;
+    --soft-gold: #bf9f4c;
+    --text-color: var(--soft-gold);
+    --light-gold: #E5C76B;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cormorant Garamond', serif;
+    background-color: var(--hunter-green);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.content {
+    position: relative;
+    padding: 3rem 2rem;
+    background-color: var(--hunter-green);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--soft-gold);
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--soft-gold);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.subtext {
+    font-size: 1.25rem;
+    color: var(--cream);
+    margin-bottom: 2rem;
+    font-weight: 300;
+}
+
+.social-links {
+    margin-top: 2rem;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--soft-gold);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.social-link:hover {
+    color: var(--light-gold);
+}
+
+.social-link svg {
+    width: 20px;
+    height: 20px;
+}
+
+.floral-decoration {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    opacity: 0.15;
+}
+
+.floral-decoration.top {
+    top: -20px;
+    left: -20px;
+    background: radial-gradient(circle at center, var(--soft-gold) 0%, transparent 70%);
+    transform: rotate(-45deg);
+}
+
+.floral-decoration.bottom {
+    bottom: -20px;
+    right: -20px;
+    background: radial-gradient(circle at center, var(--light-gold) 0%, transparent 70%);
+    transform: rotate(45deg);
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .subtext {
+        font-size: 1.1rem;
+    }
+
+    .content {
+        padding: 2rem 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    .subtext {
+        font-size: 1rem;
+    }
+} 
