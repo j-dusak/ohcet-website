@@ -1,0 +1,716 @@
+/*
+ * Wedding Photography & Videography Website
+ * Main Stylesheet
+ * 
+ * CUSTOMIZATION GUIDE:
+ * 
+ * 1. CHANGE BRAND COLORS:
+ *    Update the CSS variables below (--accent, --bg, --text, etc.)
+ *    Example: --accent: #d4af37; (for gold)
+ * 
+ * 2. CHANGE FONTS:
+ *    Update --font-primary and --font-heading variables
+ *    Or modify the font-family declarations directly
+ * 
+ * 3. ADJUST SPACING:
+ *    Modify --spacing-* variables for consistent spacing throughout
+ */
+
+/* ============================================
+   CSS VARIABLES - Customize these for your brand
+   ============================================ */
+:root {
+    /* Brand Colors */
+    --accent: #2c3e50;           /* Primary brand color (dark blue-gray) */
+    --accent-light: #34495e;     /* Lighter variant */
+    --bg: #ffffff;               /* Background color */
+    --bg-alt: #f8f9fa;           /* Alternate background */
+    --text: #2c3e50;             /* Main text color */
+    --text-muted: #6c757d;       /* Muted/secondary text */
+    --text-light: #ffffff;       /* Light text (for dark backgrounds) */
+    
+    /* Spacing */
+    --spacing-xs: 0.5rem;        /* 8px */
+    --spacing-sm: 1rem;          /* 16px */
+    --spacing-md: 2rem;          /* 32px */
+    --spacing-lg: 3rem;          /* 48px */
+    --spacing-xl: 4rem;          /* 64px */
+    --spacing-xxl: 6rem;         /* 96px */
+    
+    /* Typography */
+    --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --font-heading: "Source Sans Pro", sans-serif;
+    
+    /* Font Sizes (using clamp for responsive scaling) */
+    --font-size-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+    --font-size-sm: clamp(0.875rem, 0.825rem + 0.25vw, 1rem);
+    --font-size-lg: clamp(1.125rem, 1.05rem + 0.375vw, 1.5rem);
+    --font-size-xl: clamp(1.5rem, 1.35rem + 0.75vw, 2.25rem);
+    --font-size-xxl: clamp(2rem, 1.5rem + 2.5vw, 4.5rem);
+    
+    /* Transitions */
+    --transition: 0.3s ease;
+    
+    /* Border Radius */
+    --radius: 0.5rem;
+    --radius-lg: 1rem;
+}
+
+/* ============================================
+   RESET & BASE STYLES
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--text);
+    background-color: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+/* ============================================
+   VISUALLY HIDDEN (Accessibility + SEO headings)
+   ============================================ */
+.visually-hidden {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+    clip-path: inset(50%);
+    border: 0;
+    padding: 0;
+    margin: -1px;
+}
+
+/* ============================================
+   SKIP LINK (Accessibility)
+   ============================================ */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--accent);
+    color: var(--text-light);
+    padding: var(--spacing-sm);
+    z-index: 1000;
+    border-radius: 0 0 var(--radius) 0;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* ============================================
+   DIMENSION STYLE HERO PAGE (index.html)
+   ============================================ */
+.dimension-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.dimension-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Dark overlay for text readability - Dimension style */
+.dimension-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.dimension-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: var(--spacing-md);
+    text-align: center;
+    color: var(--text-light);
+}
+
+.dimension-header {
+    margin-bottom: var(--spacing-xl);
+}
+
+.dimension-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    margin-bottom: var(--spacing-md);
+    text-transform: uppercase;
+    text-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
+    line-height: 1.2;
+}
+
+.dimension-tagline {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.9;
+    text-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
+    margin: 0;
+}
+
+.dimension-nav-list {
+    list-style: none;
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+}
+
+.dimension-button {
+    display: inline-block;
+    padding: 0.75em 2em;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 0;
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    background: transparent;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.dimension-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: left 0.3s ease;
+    z-index: -1;
+}
+
+.dimension-button:hover,
+.dimension-button:focus {
+    border-color: rgba(255, 255, 255, 0.8);
+    color: var(--text-light);
+    outline: none;
+}
+
+.dimension-button:hover::before,
+.dimension-button:focus::before {
+    left: 0;
+}
+
+.dimension-button:active {
+    transform: scale(0.98);
+}
+
+/* ============================================
+   PAGE HEADER (gallery.html, info.html)
+   ============================================ */
+.page-header {
+    background: var(--bg);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: var(--spacing-md) var(--spacing-md);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+    transition: transform var(--transition);
+}
+
+.page-header--hidden {
+    transform: translateY(-100%);
+}
+
+.main-nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    display: inline-block;
+    line-height: 0;
+    transition: var(--transition);
+}
+
+.nav-logo:hover,
+.nav-logo:focus {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
+.logo-image {
+    height: 80px;
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
+    display: block;
+}
+
+.nav-links {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.nav-link {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-base);
+    letter-spacing: 0.05em;
+    position: relative;
+    color: var(--text);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: var(--transition);
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 80%;
+}
+
+.nav-link.active {
+    color: var(--accent);
+}
+
+/* ============================================
+   GALLERY PAGE (gallery.html) - Masonry Grid
+   ============================================ */
+.gallery-main {
+    padding: var(--spacing-lg) var(--spacing-md);
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.gallery-grid {
+    column-count: 1;
+    column-gap: 0.25rem;
+    column-fill: balance;
+}
+
+/* Mobile: 1-2 columns */
+@media (min-width: 480px) {
+    .gallery-grid {
+        column-count: 2;
+        column-gap: 0.375rem;
+    }
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 768px) {
+    .gallery-grid {
+        column-count: 2;
+        column-gap: 0.5rem;
+    }
+}
+
+/* Desktop: 3 columns */
+@media (min-width: 1024px) {
+    .gallery-grid {
+        column-count: 3;
+        column-gap: 0.75rem;
+    }
+}
+
+/* Large Desktop: 4 columns */
+@media (min-width: 1440px) {
+    .gallery-grid {
+        column-count: 4;
+        column-gap: 1rem;
+    }
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: var(--bg-alt);
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 0.25rem;
+    display: inline-block;
+    width: 100%;
+}
+
+/* Increase spacing slightly on larger screens */
+@media (min-width: 768px) {
+    .gallery-item {
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .gallery-item {
+        margin-bottom: 0.75rem;
+    }
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* ============================================
+   INFO PAGE (info.html)
+   ============================================ */
+.info-main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing-xl) var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    /* Keep full-width sections/media, but center text via text-align. */
+    align-items: stretch;
+    text-align: center;
+}
+
+.info-section {
+    width: 100%;
+    margin-bottom: var(--spacing-xxl);
+}
+
+.info-section h2 {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-xl);
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: var(--spacing-md);
+    color: var(--accent);
+}
+
+.info-section h3 {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-base); /* slightly smaller than h2 */
+    font-weight: 300;
+    letter-spacing: 0.08em; /* slightly tighter */
+    text-transform: uppercase;
+    margin-bottom: var(--spacing-sm);
+    color: var(--accent);
+}
+
+.info-section p {
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.8;
+}
+
+.info-video {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: var(--spacing-md) 0;
+    display: block;
+    border-radius: 4px;
+}
+
+.lead-text {
+    /* Match the styling of .info-section p so "lead" doesn't look like a separate style. */
+    font-size: inherit;
+    color: inherit;
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.8;
+}
+
+/* Team Section */
+.team-member {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    /* Make it span the same width area as the video inside .info-main. */
+    max-width: 100%;
+    margin: var(--spacing-lg) auto 0;
+    align-items: center;
+    text-align: center;
+}
+
+.team-photo {
+    width: 100%;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--bg-alt);
+}
+
+.team-photo img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.team-info h3 {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-lg);
+    font-weight: 400;
+    margin-bottom: var(--spacing-xs);
+    color: var(--accent);
+}
+
+.team-info p {
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+/* Contact Section */
+.contact-intro {
+    margin-bottom: var(--spacing-md);
+    line-height: 1.8;
+    color: var(--text);
+}
+
+.contact-info {
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-md);
+    background: var(--bg-alt);
+    border-radius: var(--radius);
+}
+
+
+
+.contact-info p {
+    margin-bottom: var(--spacing-sm);
+}
+
+.contact-info a {
+    color: var(--accent);
+    border-bottom: 1px solid transparent;
+}
+
+.contact-info a:hover {
+    border-bottom-color: var(--accent);
+}
+
+/* Contact Form */
+.contact-form {
+    margin-top: var(--spacing-lg);
+}
+
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 500;
+    color: var(--text);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: var(--spacing-sm);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    background: var(--bg);
+    color: var(--text);
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.1);
+}
+
+.btn-submit {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: var(--accent);
+    color: var(--text-light);
+    border: none;
+    border-radius: 50px;
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-submit:hover,
+.btn-submit:focus {
+    background: var(--accent-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(44, 62, 80, 0.2);
+    outline: none;
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+}
+
+/* Ohcet foto logo */
+
+.dimension-logo {
+    max-width: clamp(300px, 40vw, 420px);     /* min, fluid, max */
+    height: auto;         /* keeps aspect ratio */
+    display: block;
+    margin: 0 auto;       /* keeps it centered like the old text */
+}
+
+.dimension-logo {
+    filter: invert(1) brightness(2);
+}
+
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.page-footer {
+    background: var(--bg-alt);
+    padding: var(--spacing-lg) var(--spacing-md);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-xxl);
+}
+
+.footer-contact {
+    margin-top: var(--spacing-sm);
+}
+
+.footer-contact a {
+    color: var(--accent);
+    margin: 0 var(--spacing-xs);
+}
+
+.footer-contact a:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+@media (max-width: 600px) {
+    .dimension-content {
+        padding: var(--spacing-sm);
+    }
+    
+    .dimension-title {
+        font-size: clamp(2rem, 10vw, 3rem);
+        letter-spacing: 0.1em;
+    }
+    
+    .dimension-tagline {
+        font-size: clamp(0.75rem, 2.5vw, 1rem);
+    }
+    
+    .dimension-nav-list {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        align-items: center;
+    }
+    
+    .dimension-button {
+        width: 100%;
+        max-width: 250px;
+        text-align: center;
+    }
+    
+    .main-nav {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .logo-image {
+        height: 32px;
+        max-width: 150px;
+    }
+    
+    .nav-links {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .info-main {
+        padding: var(--spacing-md) var(--spacing-sm);
+    }
+    
+    /* Disable fixed background on mobile for better performance */
+    .dimension-bg {
+        background-attachment: scroll;
+    }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+@media print {
+    .page-header,
+    .page-footer,
+    .hero-nav,
+    .contact-form {
+        display: none;
+    }
+    
+    .gallery-main,
+    .info-main {
+        padding: 0;
+    }
+}
+
